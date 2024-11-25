@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+</head>
+<body ng-app="Myapp">
+    <h1>Task Manager application</h1>
+<div class="task" ng-controller="Mycontroller">
+<!-- Taking input here from user -->
+ <input type="text" name="task" ng-model="task" placeholder="Enter task">
+ <button ng-click="addTask()">Add Task</button>
+
+ <!-- Check condtionally zero task or not -->
+  <div ng-if="tasks.length===0">Task is is Empty</div>
+
+  <ul>
+    <li ng-repeat="task in tasks">
+        {{task}}
+    </li>
+  </ul>
+
+
+</div>
+<script>
+    var app=angular.module("Myapp",[]);
+    app.controller("Mycontroller",function($scope){
+   $scope.tasks=[];
+   $scope.addTask=function(){
+   $scope.tasks.push($scope.task);
+   $scope.task='';
+   }
+    });
+</script>
+</body>
+</html>
