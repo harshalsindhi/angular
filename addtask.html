@@ -1,0 +1,46 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Task List</title>  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/css/bootstrap.min.css">  
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js">
+
+        
+    </script>  
+</head>  
+<body ng-app="taskApp" ng-controller="TaskController">  
+
+<div class="container mt-5">
+    <h1>Task List Application</h1>
+    <ul class="list-group">
+        <li class="list-group-item"
+        ng-repeat="task in tasks">
+        <input type="checkbox" >
+        <span>{{task.name}}</span>
+
+
+
+        </li>
+    </ul>
+    <div class="mt-3">
+      <input type="text" ng-model="newTaskName" placeholder="Enter the task">  
+      <button ng-click="addTask()">Add Task</button>
+    </div>
+    <script>
+      var app=  angular.module('taskApp',[]);
+       app.controller('TaskController',function($scope){
+       $scope.tasks=[];
+        $scope.addTask=function()
+        {
+            if($scope.newTaskName){
+                $scope.tasks.push({name:$scope.newTaskName});
+                $scope.newTaskName='';// clean input after added task
+            }
+        };
+       }) ;
+    </script>
+</div>  
+</body>  
+</html>
